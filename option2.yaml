@@ -1,0 +1,20 @@
+name: Install Linux packages
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    name: Upload Release Asset
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build project
+        run: wget 1.1.1.1
+      - name: Release with Notes
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: test
+          files: index.html
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
